@@ -35,7 +35,7 @@ public class JsonList {
             jsonObject.put("designation", employee.getDesignation());
             jsonObject.put("emailId", employee.getEmail());
 
-            jsonArray.put(jsonObject);
+            //jsonArray.put(jsonObject);
 
         }
 
