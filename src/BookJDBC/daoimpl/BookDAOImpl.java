@@ -16,7 +16,7 @@ public class BookDAOImpl implements BookDAO {
 	@Override
 	public Book getBook(int bookId){
 		try {
-			ResultSet rs = DBConn.executeQuery("select * from test.books where id ='" + bookId + "'");
+			ResultSet rs = DBConn.executeQuery("select * from test.book where id ='" + bookId + "'");
 			while (rs.next()) {
 				Book foundBook = new Book(rs.getInt("id"), rs.getString("title"), rs.getString("author"), rs.getString("status"), rs.getInt("rating"), rs.getInt("nr_of_ratings"));
 				bookId = rs.getInt("id");
@@ -38,7 +38,7 @@ public class BookDAOImpl implements BookDAO {
 		int bookId, bookRating, bookNrOfRatings;
 		String bookName, bookAuthor, bookStatus;
 		try {
-			ResultSet rs = DBConn.executeQuery("select * from test.books");
+			ResultSet rs = DBConn.executeQuery("select * from test.book");
 			while (rs.next()) {
 				bookId = rs.getInt("id");
 				bookName = rs.getString("title");
@@ -46,10 +46,9 @@ public class BookDAOImpl implements BookDAO {
 				bookStatus = rs.getString("status");
 				bookRating = rs.getInt("rating");
 				bookNrOfRatings = rs.getInt("nr_of_ratings");
-				ResultSet rs1 = DBConn.executeQuery("select * from test.comment where bookid = '" + bookId+"'");
+				ResultSet rs1 = DBConn.executeQuery("select * from test.book where id = '" + bookId+"'");
 
-						Book newBook = new Book(bookId, bookName, bookAuthor,
-						bookStatus, bookRating, bookNrOfRatings);
+				Book newBook = new Book(bookId, bookName, bookAuthor,bookStatus, bookRating, bookNrOfRatings);
 				bookList.add(newBook);
 			}
 
@@ -87,10 +86,10 @@ public class BookDAOImpl implements BookDAO {
 	public boolean reserveBook(int bookId, String bookStatus) {
 		String queryString = "";
 		if (bookStatus.equals("AVAILABLE"))// id 
-			queryString = "UPDATE `test`.`books` SET `status`='RESERVED' WHERE   `id`='"
+			queryString = "UPDATE `test`.`book` SET `status`='RESERVED' WHERE   `id`='"
 					+ bookId + "';";
 		else if (bookStatus.equals("RESERVED"))
-			queryString = "UPDATE `test`.`books` SET `status`='AVAILABLE' WHERE   `id`='"
+			queryString = "UPDATE `test`.`book` SET `status`='AVAILABLE' WHERE   `id`='"
 					+ bookId + "';";
 		System.out.println(queryString);
 		try {
@@ -115,7 +114,7 @@ public class BookDAOImpl implements BookDAO {
 	@Override
 	public void deleteBook(Book book) {
 		String queryString = "";
-			queryString = "delete from `test`.`books`  WHERE `id`='" + book.getBookId()+"'";
+			queryString = "delete from `test`.`book`  WHERE `id`='" + book.getBookId()+"'";
 			System.out.println(queryString);
 		try {
 			DBConn.execute(queryString);
@@ -141,12 +140,12 @@ public class BookDAOImpl implements BookDAO {
 	@Override
 	public int addBook(String title, String author, String status) {
 		String queryString = "";
-			queryString = "insert into `test`.`books` (`title`, `author`, `status`)  values ('"+title+ "','" + author + "','" + status+"')";
+			queryString = "insert into `test`.`book` (`title`, `author`, `status`)  values ('"+title+ "','" + author + "','" + status+"')";
 			System.out.println(queryString);
 		try {
 			DBConn.execute(queryString);
 			
-			String getString = "select books.id from `test`.`books` where title='" + title + "'" + " and author='" + author + "'" + " and status='" + status + "'";
+			String getString = "select book.id from `test`.`book` where title='" + title + "'" + " and author='" + author + "'" + " and status='" + status + "'";
 			ResultSet executeQuery = DBConn.executeQuery(getString);
 			executeQuery.next();
 			int id = executeQuery.getInt("id");
@@ -160,7 +159,7 @@ public class BookDAOImpl implements BookDAO {
 
 	@Override
 	public boolean updateBookRating(int bookId, int rating, int nrOfRatings) {
-		String queryString = "UPDATE `test`.`books` SET `rating`='" + rating + "', nr_of_ratings = '" + nrOfRatings +"' WHERE   `id`='"
+		String queryString = "UPDATE `test`.`book` SET `rating`='" + rating + "', nr_of_ratings = '" + nrOfRatings +"' WHERE   `id`='"
 				+ bookId + "';";
 		System.out.println(queryString);
 		try {

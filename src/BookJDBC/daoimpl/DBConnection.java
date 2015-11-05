@@ -3,10 +3,10 @@ package BookJDBC.daoimpl;
 import java.sql.*;
 
 public class DBConnection {
-	private Connection conn = null;
 	private static DBConnection instance;
 	Statement stmt = null;
 	ResultSet rs = null;
+	private Connection conn = null;
 
 	private DBConnection() {
 		conn = null;
@@ -32,7 +32,7 @@ public class DBConnection {
 		String url = "jdbc:mysql://localhost:3306/test";
 		String driver = "com.mysql.jdbc.Driver";
 		String userName = "root";
-		String password = "admin";
+		String password = "";
 
 		try {
 			Class.forName(driver).newInstance();

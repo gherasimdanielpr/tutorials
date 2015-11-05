@@ -23,12 +23,10 @@ public class TestBookDAOImpl {
 		
 		ReflectionTestUtils.setField(bookDao, "DBConn", instance);
 	}
-	/*
+
 	@Test
 	public void testGetBookList() {
-		UserService userService = new UserService();
-		//userService.setUserDAO(userDAO);
-		
+
 		String bookName = "tttt";
 		String bookStatus = "RESERVED";
 		List<Book> bookList1 = bookDao.getBookList();
@@ -37,10 +35,10 @@ public class TestBookDAOImpl {
 		List<Book> bookList = bookDao.getBookList();
 		
 		
-		ArrayList<Comment> comments = new ArrayList<Comment>();
+
 		int rating = 0;
 		int nrOfRatings = 0;
-		Book expectedBook = new Book(addBook, bookName, bookName, bookStatus, rating, nrOfRatings, comments);
+		Book expectedBook = new Book(addBook, bookName, bookName, bookStatus, rating, nrOfRatings);
 		
 		Assert.assertEquals(bookList1.size() + 1, bookList.size());
 		
@@ -51,8 +49,7 @@ public class TestBookDAOImpl {
 	
 	@Test
 	public void testAddBook() {
-		UserService userService = new UserService();
-		//userService.setUserDAO(userDAO);
+
 		
 		String bookName = "tttt";
 		String bookStatus = "RESERVED";
@@ -61,10 +58,10 @@ public class TestBookDAOImpl {
 		
 		
 		
-		ArrayList<Comment> comments = new ArrayList<Comment>();
+
 		int rating = 0;
 		int nrOfRatings = 0;
-		Book expectedBook = new Book(addBook, bookName, bookName, bookStatus, rating, nrOfRatings, comments);
+		Book expectedBook = new Book(addBook, bookName, bookName, bookStatus, rating, nrOfRatings);
 		
 		Book book = bookDao.getBook(addBook);
 		
@@ -77,8 +74,6 @@ public class TestBookDAOImpl {
 	
 	@Test
 	public void testAddComment() {
-		UserService userService = new UserService();
-		//userService.setUserDAO(userDAO);
 		
 		String bookName = "tttt";
 		String bookStatus = "RESERVED";
@@ -87,18 +82,10 @@ public class TestBookDAOImpl {
 		
 		String userName = "user";
 		String text = "text";
-		Comment comment  = new Comment(userName, text, addBook);
-		
-		
-		
-		ArrayList<Comment> comments = new ArrayList<Comment>();
-		comments.add(comment);
 		int rating = 0;
 		int nrOfRatings = 0;
-		Book expectedBook = new Book(addBook, bookName, bookName, bookStatus, rating, nrOfRatings, comments);
-		
-		bookDao.addComment(addBook, text, userName);
-		
+
+		Book expectedBook = new Book(addBook, bookName, bookName, bookStatus, rating, nrOfRatings);
 		List<Book> books = bookDao.getBookList();
 		
 		Book foundBook = null;
@@ -108,10 +95,6 @@ public class TestBookDAOImpl {
 			}
 		}
 		
-		Assert.assertEquals(foundBook.getComments().get(0).getText(), comment.getText());
-		
-		
-		
 		bookDao.deleteBook(expectedBook);
 		List<Book> bookList2 = bookDao.getBookList();
 		Assert.assertEquals(bookList1.size(), bookList2.size());
@@ -120,9 +103,7 @@ public class TestBookDAOImpl {
 
 	@Test
 	public void testGetByAuthor() {
-		UserService userService = new UserService();
-		//userService.setUserDAO(userDAO);
-		
+
 		String bookName = "tttt";
 		String author = "tttt1";
 		String bookStatus = "RESERVED";
@@ -134,11 +115,10 @@ public class TestBookDAOImpl {
 		
 		Assert.assertTrue(bookHashByAuthor.containsKey(author));
 		
-		
-		ArrayList<Comment> comments = new ArrayList<Comment>();
+
 		int rating = 0;
 		int nrOfRatings = 0;
-		Book expectedBook = new Book(addBook, bookName, bookName, bookStatus, rating, nrOfRatings, comments);
+		Book expectedBook = new Book(addBook, bookName, bookName, bookStatus, rating, nrOfRatings);
 		
 		Book book = bookDao.getBook(addBook);
 		
@@ -151,8 +131,7 @@ public class TestBookDAOImpl {
 	
 	@Test
 	public void testGetByName() {
-		UserService userService = new UserService();
-		//userService.setUserDAO(userDAO);
+
 		
 		String bookName = "tttt";
 		String author = "tttt1";
@@ -166,10 +145,10 @@ public class TestBookDAOImpl {
 		Assert.assertTrue(bookHashByName.containsKey(bookName));
 		
 		
-		ArrayList<Comment> comments = new ArrayList<Comment>();
+
 		int rating = 0;
 		int nrOfRatings = 0;
-		Book expectedBook = new Book(addBook, bookName, bookName, bookStatus, rating, nrOfRatings, comments);
+		Book expectedBook = new Book(addBook, bookName, bookName, bookStatus, rating, nrOfRatings);
 		
 		Book book = bookDao.getBook(addBook);
 		
@@ -182,9 +161,7 @@ public class TestBookDAOImpl {
 	
 	@Test
 	public void testReserveBook() {
-		UserService userService = new UserService();
-		//userService.setUserDAO(userDAO);
-		
+
 		String bookName = "tttt";
 		String author = "tttt1";
 		String bookStatus = "AVAILABLE";
@@ -206,10 +183,10 @@ public class TestBookDAOImpl {
 		Assert.assertEquals(foundBook.getBookStatus(), bookStatus1);
 		
 		
-		ArrayList<Comment> comments = new ArrayList<Comment>();
+
 		int rating = 0;
 		int nrOfRatings = 0;
-		Book expectedBook = new Book(addBook, bookName, bookName, bookStatus, rating, nrOfRatings, comments);
+		Book expectedBook = new Book(addBook, bookName, bookName, bookStatus, rating, nrOfRatings);
 		
 		Book book = bookDao.getBook(addBook);
 		
@@ -222,8 +199,7 @@ public class TestBookDAOImpl {
 	
 	@Test
 	public void testUpdateRating() {
-		UserService userService = new UserService();
-		//userService.setUserDAO(userDAO);
+
 		
 		String bookName = "tttt";
 		String author = "tttt1";
@@ -247,10 +223,10 @@ public class TestBookDAOImpl {
 		Assert.assertEquals(foundBook.getNrOfRatings(), 4);
 		
 		
-		ArrayList<Comment> comments = new ArrayList<Comment>();
+
 		int rating = 0;
 		int nrOfRatings = 0;
-		Book expectedBook = new Book(addBook, bookName, bookName, bookStatus, rating, nrOfRatings, comments);
+		Book expectedBook = new Book(addBook, bookName, bookName, bookStatus, rating, nrOfRatings);
 		
 		Book book = bookDao.getBook(addBook);
 		
@@ -259,6 +235,6 @@ public class TestBookDAOImpl {
 		bookDao.deleteBook(expectedBook);
 		List<Book> bookList2 = bookDao.getBookList();
 		Assert.assertEquals(bookList1.size(), bookList2.size());
-	}*/
+	}
 
 }

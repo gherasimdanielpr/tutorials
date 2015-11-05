@@ -22,9 +22,9 @@ public class TestDBConnection {
 		Assert.assertNotNull(executeQuery);
 		Assert.assertNotNull(executeQuery.next());
 		
-		instance.execute("DELETE FROM `test`.`users` WHERE `username`='" + username + "'");
+		//instance.execute("DELETE FROM `test`.`users` WHERE `username`='" + username + "'");
 	}
-	
+
 	@Test
 	public void testExecute() throws SQLException {
 		DBConnection instance = DBConnection.getInstance();
@@ -38,7 +38,7 @@ public class TestDBConnection {
 		Assert.assertNotNull(executeQuery);
 		Assert.assertNotNull(executeQuery.next());
 		
-		instance.execute("DELETE FROM `test`.`users` WHERE `username`='" + username + "'");
+		//instance.execute("DELETE FROM `test`.`users` WHERE `username`='" + username + "'");
 	}
 
 }
