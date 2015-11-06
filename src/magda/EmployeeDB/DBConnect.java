@@ -48,6 +48,6 @@ public class DBConnect {
     }
     public void execute(String querry) throws SQLException{
         Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(querry);
+        statement.executeUpdate(querry);
     }
 }

@@ -13,7 +13,7 @@ public class TestDB {
         EmployeeCRUD employeeCRUD = new EmployeeCRUD();
         String querry =employeeCRUD.createNewPerson("Dan","Dan",12,"date","cooking");
         try {
-            ResultSet result = connect.executeQuery(querry);
+            connect.execute(querry);
             System.out.println("querried this to the Db:"+querry);
         } catch (SQLException e) {
             e.printStackTrace();
