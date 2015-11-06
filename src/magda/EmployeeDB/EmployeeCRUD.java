@@ -44,6 +44,10 @@ public class EmployeeCRUD {
 
         return querry;
     }
+    public String deletePerson(String nume){
+        String querry = "DELETE FROM emplyeedb.employees WHERE nume="+nume;
+        return querry;
+    }
 
 
 

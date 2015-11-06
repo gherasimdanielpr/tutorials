@@ -12,12 +12,17 @@ public class TestDB {
         DBConnect connect = DBConnect.getInstance();
         EmployeeCRUD employeeCRUD = new EmployeeCRUD();
         String querry =employeeCRUD.createNewPerson("Dan","Dan",12,"date","cooking");
+        String querry2 = employeeCRUD.deletePerson("'Dan'");
         try {
             connect.execute(querry);
+            connect.execute(querry2);
             System.out.println("querried this to the Db:"+querry);
-        } catch (SQLException e) {
+            System.out.println("deleted using querry"+querry2);
+            } catch (SQLException e) {
             e.printStackTrace();
         }
+
+
 
     }
 }
