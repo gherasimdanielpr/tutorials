@@ -40,6 +40,8 @@ public class EmployeeCRUD {
     public String createNewPerson(String nume,String prenume, int age, String dataNasterii,String skills){
         String querry = "INSERT INTO emplyeesdb.emloyees (nume,prenume,age,dataNasterii,skills) VALUES " +
                 "('"+nume+"','"+prenume+"',"+age+",'"+dataNasterii+"','"+skills+"')";
+        System.out.println(querry);
+
         return querry;
     }
 
