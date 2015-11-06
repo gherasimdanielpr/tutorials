@@ -102,7 +102,7 @@ public class BookService {
 					result.add(wordList.get(words[i]));
 				}
 			}
-			return result;
+	 		return result;
 		} else {
 			// . means any character. * means previous character (or group) 0 or
 			// more times.
