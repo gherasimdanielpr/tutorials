@@ -20,7 +20,7 @@ public class EmployeeCRUD {
 
     public Person getPerson(String nume){
         try{
-            ResultSet resultSet = DBConn.executeQuery("select * form emplyeesdb.employees where nume = "+nume);
+            ResultSet resultSet = DBConn.executeQuery("SELECT * FROM emplyeedb.employees WHERE nume="+nume);
             while (resultSet.next()){
                 Person person = new Person(resultSet.getString("nume"),
                                             resultSet.getString("prenume"),
@@ -46,6 +46,11 @@ public class EmployeeCRUD {
     }
     public String deletePerson(String nume){
         String querry = "DELETE FROM emplyeedb.employees WHERE nume="+nume;
+        return querry;
+    }
+
+    public String readPerson(String nume){
+        String querry = "SELECT * FROM emplyeedb.employees WHERE nume="+nume;
         return querry;
     }
 
